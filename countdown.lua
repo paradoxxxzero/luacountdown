@@ -71,7 +71,7 @@ function gtk.Countdown:expose()
 	cr:stroke()
 
 
-	cr:move_to(25, 65)
+	cr:move_to(50 - (25 * (string.len(val) / 2)), 65)
 	cr:set_font_size(40)
 	cr:show_text(val)
 
