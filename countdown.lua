@@ -58,7 +58,7 @@ function gtk.Countdown:expose()
 	   end
 	end
 
-	cr:set_source_rgb(0, 0, 0)
+	cr:set_source_rgba(0, 0, 0, 0)
 	cr:rectangle(0, 0, width, heigth)
 	cr:fill()
 
@@ -80,13 +80,12 @@ end
 ---
 -- Timeout callback
 function gtk.Countdown:paint()
-	self:queue_draw()
-	return true
+   self:queue_draw()
+   return true
 end
 
-
 local window = gtk.Window.new(gtk.WINDOW_TOPLEVEL)
-local box    = gtk.HBox.new(true, 20)
+local box = gtk.HBox.new(true, 20)
 local cd = gtk.Countdown.new()
 
 window:set("title", "Countdown Widget", "window-position", gtk.WIN_POS_CENTER)
@@ -94,8 +93,11 @@ window:connect("delete-event", gtk.main_quit)
 window:set("width-request", width, "height-request", heigth)
 window:set("opacity", 0.75)
 window:set("resizable", false)
+window:stick()
+window:set_keep_below(true)
 
 box:add(cd)
 window:add(box)
+window:show_all()
 window:show_all()
 gtk.main()
